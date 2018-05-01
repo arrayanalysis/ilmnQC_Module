@@ -115,8 +115,10 @@ neqc.normData <- function (x.lumi, controlData) {
 createSummary <- function(x.lumi, fn) {
   #create table which contains QC summary of the raw data
   summary<-x.lumi@QC$sampleSummary
-  summary<-t(summary)
-  write.table(summary, file=fn, sep ='\t', col.names=T, row.names=T)
+  if(!is.null(summary)){
+    summary<-t(summary)
+    write.table(summary, file=fn, sep ='\t', col.names=T, row.names=T)
+  }
   return(summary)
 }
 
